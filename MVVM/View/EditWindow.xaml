@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:MVVM.CustomUserControls"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:MVVM.View"
-        mc:Ignorable="d"
-        Title="EditWindow" Height="150" Width="150">
+        mc:Ignorable="d" Style="{StaticResource DefaultWindow}"
+        Title="EditWindow" Height="260" Width="230"
+        MinHeight="250" MinWidth="230">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDown">
+            <i:InvokeCommandAction Command="{Binding DragCommand}" 
+                       CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -16,11 +26,12 @@
         <uc:WindowInteract Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 
         <StackPanel Orientation="Vertical" Grid.Row="1">
-            <TextBox Text="{Binding NameInput, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox Text="{Binding PointsInput, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Content="OK" Command="{Binding OkCommand,
-                    UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+
+            <uc:DatagridTextbox x:Name="ahoj" NameText="{Binding NameInput, UpdateSourceTrigger=PropertyChanged}" 
+                    PointsText="{Binding PointsInput, UpdateSourceTrigger=PropertyChanged}" Margin="0,-10,0,0"/>
+
+            <Button Content="OK" Command="{Binding OkCommand, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                     Style="{StaticResource InteractButtons}"/>
         </StackPanel>
-     </Grid>
+    </Grid>
 </Window>

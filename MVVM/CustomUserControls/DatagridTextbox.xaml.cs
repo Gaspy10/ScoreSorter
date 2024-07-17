@@ -21,27 +21,66 @@ namespace MVVM.CustomUserControls
     /// </summary>
     public partial class DatagridTextbox : UserControl
     {
-        public static readonly DependencyProperty NameTextProperty =
-            DependencyProperty.Register("NameText", typeof(string), typeof(DatagridTextbox), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty NameTextProperty = DependencyProperty.Register(
+          nameof(NameText), typeof(string), typeof(DatagridTextbox),
+          new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnPropertyChanged)));
 
-        public static readonly DependencyProperty PointsTextProperty =
-            DependencyProperty.Register("PointsText", typeof(string), typeof(DatagridTextbox), new PropertyMetadata(string.Empty));
+        public static readonly DependencyProperty PointsTextProperty = DependencyProperty.Register(
+          nameof(PointsText), typeof(string), typeof(DatagridTextbox),
+          new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, new PropertyChangedCallback(OnPropertyChanged)));
 
         public string NameText
         {
             get { return (string)GetValue(NameTextProperty); }
-            set { SetValue(NameTextProperty, value); }
+            set 
+            { 
+                SetValue(NameTextProperty, value);
+                addName.Text = value;
+            }
         }
 
         public string PointsText
         {
             get { return (string)GetValue(PointsTextProperty); }
-            set { SetValue(PointsTextProperty, value); }
+            set 
+            { 
+                SetValue(PointsTextProperty, value);
+                addPoints.Text = value;
+            }
         }
 
         public DatagridTextbox()
         {
             InitializeComponent();
+            addName.TextChanged += TextChanged;
+            addPoints.TextChanged += TextChanged;
+        }
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if(textBox == null)
+            {
+                return;
+            }
+
+            if (textBox.Name == nameof(addPoints))
+            {
+                PointsText = addPoints.Text;
+            }
+            else if (textBox.Name == nameof(addName))
+            {
+                NameText = addName.Text;
+            }
+        }
+        private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is DatagridTextbox ctrl)
+            {
+                if(e.Property.Name == nameof(NameText))
+                    ctrl.addName.Text = (string)e.NewValue;
+                else if (e.Property.Name == nameof(PointsText))
+                    ctrl.addPoints.Text = (string)e.NewValue;
+            }
         }
     }
 }

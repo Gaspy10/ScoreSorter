@@ -15,9 +15,9 @@ namespace MVVM.ViewModel
         ConditionalFunctions cf = new ConditionalFunctions();
 
         private RelayCommand addCommand;
-        public RelayCommand AddCommand => addCommand ??= new RelayCommand(execute => AddItem(), canExecute => cf.CanAdd(NewSurname));
+        public RelayCommand AddCommand => addCommand ??= new RelayCommand(execute => AddItem(), canExecute => CanAdd);
 
-        private bool CanAddVm(string points)
+        /*private bool CanAddVm(string points)
         {
             if (string.IsNullOrEmpty(points))
                 return false;
@@ -31,16 +31,19 @@ namespace MVVM.ViewModel
             {
                 return false;
             }
-        }
+        }*/
+
         public RelayCommand RemoveCommand => new RelayCommand(execute => RemoveItem(), canExecute => SelectedItem != null);
         public RelayCommand ShuffleCommand => new RelayCommand(execute => ShuffleCollection());
         public RelayCommand SortCommand => new RelayCommand(execute => SortCollection());
         public RelayCommand EditCommand => new RelayCommand(execute => EditItem(), canExecute => CanEdit(canExecute));
-        public RelayCommand DragCommand => new RelayCommand(execute => DragWindow(execute), canExecute => cf.CanInteract(canExecute));
+        public RelayCommand DragCommand => new RelayCommand(execute => DragWindow(execute), canExecute => ConditionalFunctions.CanInteract(canExecute));
 
         public MainWindowViewModel()
         {
             Items = new ObservableCollection<Item>();
+
+            Items.Add(new Item { Name = "John", Points = 10 });
         }
 
         private bool canAdd = false;
@@ -91,8 +94,8 @@ namespace MVVM.ViewModel
             set
             {
                 newSurname = value;
-                //CanAdd = cf.CanAdd(newSurname);
-                OnPropertyChanged(null);
+                CanAdd = ConditionalFunctions.CanAdd(newSurname);
+                OnPropertyChanged(nameof(NewSurname));
             }
         }
 
@@ -138,12 +141,17 @@ namespace MVVM.ViewModel
 
         private void EditItem()
         {
-            SecondWindowViewModel swm = new SecondWindowViewModel();
-            swm.NameInput = SelectedItem.Name;
-            swm.PointsInput = SelectedItem.Points.ToString();
+            SecondWindowViewModel swm = new SecondWindowViewModel()
+            {
+                NameInput = SelectedItem.Name,
+                PointsInput = SelectedItem.Points.ToString(),
+            };
 
             EditWindow ew = new EditWindow(swm);
+
             ew.ShowDialog();
+            if (!swm.DataChanged)
+                return;
 
             var input = (SecondWindowViewModel)ew.DataContext;
 

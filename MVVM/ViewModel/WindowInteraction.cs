@@ -9,11 +9,9 @@ namespace MVVM.ViewModel
 {
     internal class WindowInteraction
     {
-        ConditionalFunctions cf = new ConditionalFunctions();
-
-        public RelayCommand CloseCommand => new RelayCommand(execute => CloseWindow(execute), canExecute => cf.CanInteract(canExecute));
-        public RelayCommand ResizeCommand => new RelayCommand(execute => ResizeWindow(execute), canExecute => cf.CanInteract(canExecute));
-        public RelayCommand MinimizeCommand => new RelayCommand(execute => MinimizeWindow(execute), canExecute => cf.CanInteract(canExecute));
+        public RelayCommand CloseCommand => new RelayCommand(execute => CloseWindow(execute), canExecute => ConditionalFunctions.CanInteract(canExecute));
+        public RelayCommand ResizeCommand => new RelayCommand(execute => ResizeWindow(execute), canExecute => ConditionalFunctions.CanInteract(canExecute));
+        public RelayCommand MinimizeCommand => new RelayCommand(execute => MinimizeWindow(execute), canExecute => ConditionalFunctions.CanInteract(canExecute));
         
         internal void CloseWindow(object parameter)
         {

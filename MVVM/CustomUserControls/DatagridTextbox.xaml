@@ -4,18 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM.CustomUserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="220">
+             mc:Ignorable="d"
+             d:DesignHeight="160" d:DesignWidth="220">
     <Grid>
         <Grid>
             <StackPanel Margin="5" HorizontalAlignment="Center">
                 <Label Content="Name:" Style="{StaticResource MainLabel}" Margin="0, 0, 0, -4"/>
-                <TextBox Name="addName" Margin="5,0,5,0" 
-                         Style="{StaticResource DefaultTextBox}"/>
+                <TextBox Name="addName" Margin="5,0,5,0" Style="{StaticResource DefaultTextBox}"/>
 
                 <Label Content="Points:" Style="{StaticResource MainLabel}" Margin="0, 0, 0, -4"/>
-                <TextBox Name="addSurname" Margin="5,0,5, 15" Text="{Binding NewSurname, UpdateSourceTrigger=PropertyChanged}" 
-                         Style="{StaticResource DefaultTextBox}"/>
+                <TextBox Name="addPoints" Margin="5,0,5, 15" Style="{StaticResource DefaultTextBox}"/>
             </StackPanel>
         </Grid>
     </Grid>

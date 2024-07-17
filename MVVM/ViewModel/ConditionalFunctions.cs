@@ -7,28 +7,14 @@ using System.Windows;
 
 namespace MVVM.ViewModel
 {
-    class ConditionalFunctions
+    internal class ConditionalFunctions
     {
-        public bool InstanceMember { get; set; }
-
-        internal bool CanAdd(string points)
+        internal static bool CanAdd(string points)
         {
-
-            if (string.IsNullOrEmpty(points))
-                return false;
-
-            try
-            {
-                int result = int.Parse(points);
-                return true;
-            }
-            catch (Exception ex) when (ex is FormatException || ex is OverflowException)
-            {
-                return false;
-            }
+            return int.TryParse(points, out _);
         }
 
-        internal bool CanInteract(object parameter)
+        internal static bool CanInteract(object parameter)
         {
             if (parameter is Window)
             {
