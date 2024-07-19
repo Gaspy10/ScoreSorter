@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
+using MVVM.Model;
 
 namespace MVVM.ViewModel
 {
@@ -12,6 +9,15 @@ namespace MVVM.ViewModel
         internal static bool CanAdd(string points)
         {
             return int.TryParse(points, out _);
+        }
+
+        internal static bool CanExport(ObservableCollection<Item> items)
+        {
+            if(items.Count > 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         internal static bool CanInteract(object parameter)

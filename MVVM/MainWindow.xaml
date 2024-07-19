@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:MVVM"
         mc:Ignorable="d" Style="{StaticResource DefaultWindow}"
         
-        Title="Sorter" Height="550" Width="900" MinHeight="450" MinWidth="800">
+        Title="Sorter" Height="600" Width="1000" MinHeight="510" MinWidth="820">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseDown">
@@ -50,20 +50,29 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="5" HorizontalAlignment="Center">
+        <Border BorderBrush="#8e546f" BorderThickness="2" Padding="10" Grid.Column="1" Grid.Row="1" Height="462" Width="246">
 
-            <uc:DatagridTextbox x:Name="ahoj" NameText="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" 
-                                PointsText="{Binding NewSurname, UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
 
-            <Button x:Name="addBut" Content="Add" Command="{Binding AddCommand,
-                UpdateSourceTrigger=PropertyChanged}" Margin="0, 30, 0, 0" Style="{StaticResource InteractButtons}"/>
+                <uc:DatagridTextbox x:Name="ahoj" NameText="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" 
+                                    PointsText="{Binding NewSurname, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
 
-            <Button Name="delBut" Content="Delete" Command="{Binding RemoveCommand,
-                UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Style="{StaticResource InteractButtons}"/>
+                <Button x:Name="addBut" Content="Add" Command="{Binding AddCommand,
+                    UpdateSourceTrigger=PropertyChanged}" Margin="0, 30, 0, 0" Style="{StaticResource InteractButtons}"/>
 
-            <Button Name="editBut" Content="Edit" Command="{Binding EditCommand,
-                UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Style="{StaticResource InteractButtons}"/>
-        </StackPanel>
+                <Button Name="delBut" Content="Delete" Command="{Binding RemoveCommand,
+                    UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Style="{StaticResource InteractButtons}"/>
+
+                <Button Name="editBut" Content="Edit" Command="{Binding EditCommand,
+                    UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Style="{StaticResource InteractButtons}"/>
+
+                <Button Name="importBut" Content="Import" Command="{Binding ImportCommand,
+                    UpdateSourceTrigger=PropertyChanged}" Margin="0,45,0,0" Style="{StaticResource InteractButtons}"/>
+
+                <Button Name="exportBut" Content="Export image" Command="{Binding ExportCommand,
+                    UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Style="{StaticResource InteractButtons}"/>
+            </StackPanel>
+        </Border>
 
         <!-- <Label Content="Sorter" FontSize="25" FontStyle="Oblique" Style="{StaticResource MainLabel}"/> -->
     </Grid>

@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <DrawingGroup x:Key="Cross_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,48.0,48.0"/>
+        </DrawingGroup.ClipGeometry>
+        <GeometryDrawing>
+            <GeometryDrawing.Brush>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="7.534,7.534" EndPoint="27.557,27.557">
+                    <GradientStop Color="#fff44f5a" Offset="0.0"/>
+                    <GradientStop Color="#ffee3d4a" Offset="0.443"/>
+                    <GradientStop Color="#ffe52030" Offset="1.0"/>
+                </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 42.42 12.401 c 0.774 -0.774 0.774 -2.028 0 -2.802 L 38.401 5.58 c -0.774 -0.774 -2.028 -0.774 -2.802 0 L 24 17.179 L 12.401 5.58 c -0.774 -0.774 -2.028 -0.774 -2.802 0 L 5.58 9.599 c -0.774 0.774 -0.774 2.028 0 2.802 L 17.179 24 L 5.58 35.599 c -0.774 0.774 -0.774 2.028 0 2.802 l 4.019 4.019 c 0.774 0.774 2.028 0.774 2.802 0 L 42.42 12.401 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing>
+            <GeometryDrawing.Brush>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="27.373,27.373" EndPoint="40.507,40.507">
+                    <GradientStop Color="#ffa8142e" Offset="0.0"/>
+                    <GradientStop Color="#ffba1632" Offset="0.179"/>
+                    <GradientStop Color="#ffc21734" Offset="0.243"/>
+                </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 24 30.821 L 35.599 42.42 c 0.774 0.774 2.028 0.774 2.802 0 l 4.019 -4.019 c 0.774 -0.774 0.774 -2.028 0 -2.802 L 30.821 24 L 24 30.821 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource Cross_xaml}" x:Key="di_Cross_xaml"/>
+</ResourceDictionary>

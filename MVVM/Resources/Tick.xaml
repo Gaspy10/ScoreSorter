@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <DrawingGroup x:Key="Tick_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,48.0,48.0"/>
+        </DrawingGroup.ClipGeometry>
+        <GeometryDrawing>
+            <GeometryDrawing.Brush>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="21.241,39.241" EndPoint="3.541,21.541">
+                    <GradientStop Color="#ff0d7044" Offset="0.108"/>
+                    <GradientStop Color="#ff11945a" Offset="0.433"/>
+                </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 16.599 41.42 L 1.58 26.401 c -0.774 -0.774 -0.774 -2.028 0 -2.802 l 4.019 -4.019 c 0.774 -0.774 2.028 -0.774 2.802 0 L 23.42 34.599 c 0.774 0.774 0.774 2.028 0 2.802 l -4.019 4.019 C 18.627 42.193 17.373 42.193 16.599 41.42 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing>
+            <GeometryDrawing.Brush>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="-15.77,43.228" EndPoint="26.403,43.228" Transform="-0.7070944397373545,0.7071191224203435,-0.7071191224203435,-0.7070944397373545,63.82676098453508,51.30743739694833">
+                    <GradientStop Color="#ff2ac782" Offset="0.0"/>
+                    <GradientStop Color="#ff21b876" Offset="1.0"/>
+                </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 12.58 34.599 L 39.599 7.58 c 0.774 -0.774 2.028 -0.774 2.802 0 l 4.019 4.019 c 0.774 0.774 0.774 2.028 0 2.802 L 19.401 41.42 c -0.774 0.774 -2.028 0.774 -2.802 0 l -4.019 -4.019 C 11.807 36.627 11.807 35.373 12.58 34.599 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource Tick_xaml}" x:Key="di_Tick_xaml"/>
+</ResourceDictionary>

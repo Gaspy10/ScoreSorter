@@ -9,7 +9,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Python\jsonexport.py" />
+    <None Remove="Python\tresholding.py" />
+    <None Remove="Resources\InvalidOption.JPEG" />
+    <None Remove="Resources\ValidOption.JPEG" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>4</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>215d64d2-031c-33c7-96e3-61794cd1ee61</Guid>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
+    <PackageReference Include="pythonnet" Version="3.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Python\jsonexport.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Python\tresholding.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\InvalidOption.JPEG" />
+    <Resource Include="Resources\ValidOption.JPEG" />
   </ItemGroup>
 
 </Project>
