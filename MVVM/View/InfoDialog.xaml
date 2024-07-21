@@ -24,8 +24,8 @@
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Content="Please crop your image before importing." Style="{StaticResource MainLabel}"
-               HorizontalAlignment="Center" FontSize="30" FontStyle="Italic" FontWeight="Bold" VerticalAlignment="Center"/>
+        <Label Grid.Row="1" Content="Please crop your image before importing." Style="{StaticResource InfoLabel}"
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <uc:WindowInteract HorizontalAlignment="Right" Margin="0,0,5,0"/>
 

@@ -44,8 +44,10 @@ namespace MVVM.ViewModel
             }
             string FilePath = dialog.FileName;
 
+            Console.WriteLine("start");
             string processedImagePath = PythonService.ProcessPhoto(FilePath);
             string jsonPath = PythonService.ExportJson(processedImagePath);
+            Console.WriteLine("stop");
 
             //Console.WriteLine("d");
         }
