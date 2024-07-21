@@ -8,7 +8,11 @@ namespace MVVM.ViewModel
     {
         internal static bool CanAdd(string points)
         {
-            return int.TryParse(points, out _);
+            if(int.TryParse(points, out int parsedPoints))
+            {
+                return parsedPoints > 0;
+            }
+            return false;
         }
 
         internal static bool CanExport(ObservableCollection<Item> items)
