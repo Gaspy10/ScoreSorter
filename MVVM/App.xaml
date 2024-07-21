@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="Styles/TextboxStyles.xaml"/>
                 <ResourceDictionary Source="Styles/DatagridStyles.xaml"/>
                 <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ScrollViewerStyles.xaml"/>
+                
                 <ResourceDictionary Source="Resources/Cross.xaml"/>
                 <ResourceDictionary Source="Resources/Tick.xaml"/>
             </ResourceDictionary.MergedDictionaries>

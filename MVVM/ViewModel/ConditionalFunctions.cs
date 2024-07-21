@@ -13,6 +13,7 @@ namespace MVVM.ViewModel
                 return parsedPoints > 0;
             }
             return false;
+            //return int.TryParse(points, out _);
         }
 
         internal static bool CanExport(ObservableCollection<Item> items)
