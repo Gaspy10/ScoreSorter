@@ -86,7 +86,7 @@ def main(imagePath: str, tempPath: str) ->None:
 
             if (i == (len(items) - 1)):
                 if (numberInts != 3):
-                    points = "-1"
+                    points = "0"
 
                 pointsList.append(points)
                 points = ""

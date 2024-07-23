@@ -4,6 +4,8 @@ using MVVM.ViewModel.Reorder_function;
 using System.Collections.ObjectModel;
 using System.Windows;
 using MVVM.Python;
+using System.IO;
+using System.Text.Json;
 //using WinForms = System.Windows.Forms;
 
 namespace MVVM.ViewModel
@@ -21,7 +23,7 @@ namespace MVVM.ViewModel
         public RelayCommand DragCommand => new RelayCommand(execute => DragWindow(execute), canExecute => ConditionalFunctions.CanInteract(canExecute));
         public RelayCommand ImportCommand => new RelayCommand(execute => ImportFilePath(), canExecute => true);
 
-        private void ImportFilePath()
+        private async void ImportFilePath()
         {
             InfoDialogViewModel ivm = new InfoDialogViewModel();
             InfoDialog id = new InfoDialog(ivm);
@@ -38,18 +40,63 @@ namespace MVVM.ViewModel
             };
 
             bool? result = dialog.ShowDialog();
-            if(result != true)
+            if (result != true)
             {
                 return;
             }
             string FilePath = dialog.FileName;
 
-            Console.WriteLine("start");
-            string processedImagePath = PythonService.ProcessPhoto(FilePath);
-            string jsonPath = PythonService.ExportJson(processedImagePath);
-            Console.WriteLine("stop");
+            ProcessStateProperty imageProcess = new ProcessStateProperty();
+            LoadingWindow loadingWindow = new LoadingWindow(imageProcess);
 
-            //Console.WriteLine("d");
+            Progress<ProcessStateProperty> progress = new Progress<ProcessStateProperty>();
+            loadingWindow.Show();
+
+            progress.ProgressChanged += (sender, e) =>
+            {
+                imageProcess.ProcessState = e.ProcessState;
+            };
+
+            List<Student> students = await Task.Run(() => StartLoadingWindowAsync(progress, FilePath));
+
+            Items.Clear();
+
+            for(int i = 0; i < students.Count; i++)
+            {
+                Items.Add(new Item { Name = students[i].name, 
+                Points = int.Parse(students[i].points) });
+            }
+
+            imageProcess.ProcessState = "Done!";
+
+            Items.Sort();
+        }
+
+        internal class Student
+        {
+            public string name { get; set; }
+            public string points { get; set; }
+        }
+
+        private List<Student>StartLoadingWindowAsync(IProgress<ProcessStateProperty> progress, string FilePath)
+        {
+            ProcessStateProperty report = new ProcessStateProperty();
+
+            report.ProcessState = "Preprocessing the selected image...";
+            progress.Report(report);
+            string processedImagePath = PythonService.ProcessPhoto(FilePath);
+
+            report.ProcessState = "Exporting to .json file...";
+            progress.Report(report);
+            string jsonPath = PythonService.ExportJson(processedImagePath);
+
+            report.ProcessState = "Deserializing json...";
+            progress.Report(report);
+            List<Student> students = new List<Student> { };
+            students = JsonSerializer.Deserialize<List<Student>>(File.ReadAllText(jsonPath));
+
+            report.ProcessState = "Importing data to datagrid...";
+            return students;
         }
 
         public RelayCommand ExportCommand => new RelayCommand(execute => Export(execute), canExecute => ConditionalFunctions.CanExport(Items));
