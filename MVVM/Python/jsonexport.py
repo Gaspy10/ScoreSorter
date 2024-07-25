@@ -31,8 +31,8 @@ def main(imagePath: str, tempPath: str) ->None:
             slice = text[(previousIndex + 1):i]
             sliceLength = len(slice)
             if (len(slice) > 65):
-                subslice1 = slice[0:(sliceLength / 2)]
-                subslice2 = slice[(sliceLength / 2):sliceLength]
+                subslice1 = slice[0:(sliceLength // 2)]
+                subslice2 = slice[(sliceLength // 2):sliceLength]
                 slices.append(subslice1)
                 slices.append(subslice2)
             elif (len(slice) > 10):

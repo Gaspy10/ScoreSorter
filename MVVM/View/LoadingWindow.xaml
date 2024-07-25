@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:uc="clr-namespace:MVVM.CustomUserControls"
         xmlns:local="clr-namespace:MVVM.View"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d" Style="{StaticResource DefaultWindow}"
         Title="LoadingWindow" Height="200" Width="400">
+           
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDown">
+            <i:InvokeCommandAction Command="{Binding DragCommand}" 
+                   CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -20,7 +29,7 @@
 
         <StackPanel Grid.Row="2" Orientation="Vertical">
             <Label Style="{StaticResource MainLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                   Content="{Binding ProcessState, UpdateSourceTrigger=PropertyChanged}" FontSize="30"/>
+                   Content="{Binding ProcessStateText, UpdateSourceTrigger=PropertyChanged}" FontSize="30"/>
             <ProgressBar IsIndeterminate="True" Margin="15" Height="30"/>
         </StackPanel>
     </Grid>

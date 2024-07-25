@@ -45,11 +45,5 @@ namespace MVVM.ViewModel
         {
             NameInput = name;
         }
-
-        internal void DragWindow(object parameter)
-        {
-            Window window = (Window)parameter;
-            window.DragMove();
-        }
     }
 }

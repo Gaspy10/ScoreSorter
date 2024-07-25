@@ -18,6 +18,10 @@ namespace MVVM.ViewModel.Reorder_function
                 if (collection[i].Points > max)
                     max = collection[i].Points;
             }
+            /*if(max < 0)
+            {
+                throw new Exception("Something went wrong while importing the data. Please try again.");
+            }*/
 
             int[] counter = new int[max+1];
             int[] array = new int[max+1];

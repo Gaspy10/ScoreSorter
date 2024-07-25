@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace MVVM.Model
 {
-    public class Item : INotifyPropertyChanged
+    public class Item : INotifyPropertyChanged, ICloneable
     {
         private string name;
         private int points;
@@ -56,6 +56,11 @@ namespace MVVM.Model
         }*/
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public object Clone()
+        {
+            return new Item { Name = this.Name, Points = this.Points, Order = this.Order };
+        }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

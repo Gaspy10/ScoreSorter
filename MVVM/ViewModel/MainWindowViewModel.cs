@@ -6,6 +6,7 @@ using System.Windows;
 using MVVM.Python;
 using System.IO;
 using System.Text.Json;
+using System.Collections.Specialized;
 //using WinForms = System.Windows.Forms;
 
 namespace MVVM.ViewModel
@@ -23,7 +24,7 @@ namespace MVVM.ViewModel
         public RelayCommand DragCommand => new RelayCommand(execute => DragWindow(execute), canExecute => ConditionalFunctions.CanInteract(canExecute));
         public RelayCommand ImportCommand => new RelayCommand(execute => ImportFilePath(), canExecute => true);
 
-        private async void ImportFilePath()
+        private async Task ImportFilePath()
         {
             InfoDialogViewModel ivm = new InfoDialogViewModel();
             InfoDialog id = new InfoDialog(ivm);
@@ -47,7 +48,10 @@ namespace MVVM.ViewModel
             string FilePath = dialog.FileName;
 
             ProcessStateProperty imageProcess = new ProcessStateProperty();
-            LoadingWindow loadingWindow = new LoadingWindow(imageProcess);
+            LoadingWindowViewModel lwm = new LoadingWindowViewModel(imageProcess);
+            LoadingWindow loadingWindow = new LoadingWindow(lwm);
+
+            OpenErrorWindow errorWindowOperator = new OpenErrorWindow(loadingWindow);
 
             Progress<ProcessStateProperty> progress = new Progress<ProcessStateProperty>();
             loadingWindow.Show();
@@ -57,8 +61,19 @@ namespace MVVM.ViewModel
                 imageProcess.ProcessState = e.ProcessState;
             };
 
-            List<Student> students = await Task.Run(() => StartLoadingWindowAsync(progress, FilePath));
+            List<Student> students;
 
+            try
+            {
+                students = await Task.Run(() => StartLoadingWindowAsync(progress, FilePath));
+            }
+            catch (Exception e)
+            {
+                errorWindowOperator.ThrowError(e.Message);
+                return;
+            }
+
+            ObservableCollection<Item> OriginalItems = new ObservableCollection<Item>(Items.Select(item => (Item)item.Clone()));
             Items.Clear();
 
             for(int i = 0; i < students.Count; i++)
@@ -67,9 +82,28 @@ namespace MVVM.ViewModel
                 Points = int.Parse(students[i].points) });
             }
 
-            imageProcess.ProcessState = "Done!";
+            imageProcess.ProcessState = "Sorting the collection";
 
-            Items.Sort();
+            try
+            {
+                Items.Sort();
+            }
+            catch (Exception e)
+            {
+                Items = new ObservableCollection<Item>(OriginalItems.Select(item => (Item)item.Clone()));
+                OnPropertyChanged(nameof(Items));
+                Items.Sort();
+                errorWindowOperator.ThrowError(e.Message);
+                return;
+            }
+            imageProcess.ProcessState = "Done!";
+        }
+
+        private void OpenNewErrorWindow(string error)
+        {
+            ErrorWindowViewModel evm = new ErrorWindowViewModel(error);
+            ErrorWindow errorWindow = new ErrorWindow(evm);
+            errorWindow.ShowDialog();
         }
 
         internal class Student
@@ -94,8 +128,9 @@ namespace MVVM.ViewModel
             progress.Report(report);
             List<Student> students = new List<Student> { };
             students = JsonSerializer.Deserialize<List<Student>>(File.ReadAllText(jsonPath));
-
+           
             report.ProcessState = "Importing data to datagrid...";
+            progress.Report(report);
             return students;
         }
 
@@ -234,12 +269,6 @@ namespace MVVM.ViewModel
                 return true;
             }
             return false;
-        }
-
-        internal void DragWindow(object parameter)
-        {
-            Window window = (Window)parameter;
-            window.DragMove();
         }
     }
 }

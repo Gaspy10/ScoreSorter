@@ -5,6 +5,10 @@ import os
 
 def main(imagePath: str, tempPath: str) -> None:
     img = cv2.imread(imagePath)
+    if img is None:
+        raise Exception("Image not found.")
+        #return
+
     dimensions = img.shape
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 

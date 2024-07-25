@@ -31,11 +31,5 @@ namespace MVVM.ViewModel
 
             window.Close();
         }
-
-        internal void DragWindow(object parameter)
-        {
-            Window window = (Window)parameter;
-            window.DragMove();
-        }
     }
 }
