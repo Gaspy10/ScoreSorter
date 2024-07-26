@@ -16,7 +16,7 @@ namespace MVVM.ViewModel
         }
         internal void ThrowError(string error)
         {
-            ErrorWindowViewModel evm = new ErrorWindowViewModel("Something went wrong: " + error + " Please make sure the selected image is in correct format.");
+            ErrorWindowViewModel evm = new ErrorWindowViewModel(error);
             ErrorWindow errorWindow = new ErrorWindow(evm);
             AlmostClosedWindow.Close();
             errorWindow.ShowDialog();
