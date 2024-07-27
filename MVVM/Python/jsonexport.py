@@ -12,8 +12,8 @@ class FinalMembers:
 
     def to_dict(self):
         return {
-            'name': self.name,
-            'points': self.points
+            'Name': self.name,
+            'Points': self.points
         }
 
 

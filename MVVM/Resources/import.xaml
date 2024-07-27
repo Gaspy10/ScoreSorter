@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <DrawingGroup x:Key="import_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,48.0,48.0"/>
+        </DrawingGroup.ClipGeometry>
+        <GeometryDrawing Brush="#ff199be2">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 35.983 32.448 l -3.536 3.536 l 7.87 7.87 c 0.195 0.195 0.512 0.195 0.707 0 l 2.828 -2.828 c 0.195 -0.195 0.195 -0.512 0 -0.707 L 35.983 32.448 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing>
+            <GeometryDrawing.Brush>
+                <RadialGradientBrush MappingMode="Absolute" RadiusX="19.604" RadiusY="19.604" Center="20.024,20.096" GradientOrigin="20.024,20.096">
+                    <GradientStop Color="#ff006185" Offset="0.693"/>
+                    <GradientStop Color="#ff35c1f1" Offset="0.921"/>
+                </RadialGradientBrush>
+            </GeometryDrawing.Brush>
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 31.601 28.065 L 28.065 31.601 L 32.448 35.983 L 35.983 32.448 Z"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing>
+            <GeometryDrawing.Brush>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="8.911,8.911" EndPoint="31.339,31.339">
+                    <GradientStop Color="#ffa3ffff" Offset="0.0"/>
+                    <GradientStop Color="#ff9dfbff" Offset="0.223"/>
+                    <GradientStop Color="#ff8bf1ff" Offset="0.53"/>
+                    <GradientStop Color="#ff6ee0ff" Offset="0.885"/>
+                    <GradientStop Color="#ff63daff" Offset="1.0"/>
+                </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+            <GeometryDrawing.Geometry>
+                <EllipseGeometry RadiusX="16.0" RadiusY="16.0" Center="20.0,20.0"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource import_xaml}" x:Key="di_import_xaml"/>
+</ResourceDictionary>

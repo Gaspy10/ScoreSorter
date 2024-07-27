@@ -31,6 +31,43 @@
 
         <uc:WindowInteract Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 
+        <Menu Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#666666" Margin="5,0,0,0">
+            <MenuItem Header="File" FontSize="16" Style="{StaticResource MenuItemStyle1}" Foreground="White" VerticalAlignment="Center" Padding="10,0,10,0" BorderThickness="2" BorderBrush="#8e546f">
+                <MenuItem.Icon>
+                    <Image Source="{StaticResource di_file_xaml}"/>
+                </MenuItem.Icon>
+                
+                <MenuItem Command="{Binding SaveCommand}" Style="{StaticResource MenuItemStyle1}" Header="Save">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource di_save_xaml}" Style="{StaticResource IconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                
+                <MenuItem Header="Save as" Command="{Binding SaveAsCommand}" Style="{StaticResource MenuItemStyle1}"/>
+                <MenuItem Header="Open" Command="{Binding OpenCommand}" Style="{StaticResource MenuItemStyle1}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource di_open_xaml}" Style="{StaticResource IconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="Image" FontSize="16" Style="{StaticResource MenuItemStyle1}" Foreground="White" VerticalAlignment="Center" Padding="10,0,10,0" BorderThickness="2" BorderBrush="#8e546f">
+                <MenuItem.Icon>
+                    <Image Source="{StaticResource di_image_xaml}"/>
+                </MenuItem.Icon>
+                <MenuItem Command="{Binding ImportCommand, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MenuItemStyle1}" Header="Import">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource di_import_xaml}" Style="{StaticResource IconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Command="{Binding ExportCommand, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MenuItemStyle1}" Header="Export">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource di_export_xaml}" Style="{StaticResource IconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
         <DataGrid 
             RowStyle="{StaticResource SelectedRowStyle}"
             Grid.Row="1"
@@ -40,6 +77,7 @@
             HeadersVisibility="All"
             SelectionMode="Single"
             VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Disabled"
             CanUserAddRows="False" 
             CanUserDeleteRows="False" 
             AutoGenerateColumns="False"
@@ -53,7 +91,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Border BorderBrush="#8e546f" BorderThickness="2" Padding="10" Grid.Column="1" Grid.Row="1" Height="462" Width="246">
+        <Border BorderBrush="#8e546f" BorderThickness="2" Padding="10" Grid.Column="1" Grid.Row="1" Height="340" Width="246">
 
             <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
 
@@ -67,12 +105,6 @@
                     UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Style="{StaticResource InteractButtons}"/>
 
                 <Button Name="editBut" Content="Edit" Command="{Binding EditCommand,
-                    UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Style="{StaticResource InteractButtons}"/>
-
-                <Button Name="importBut" Content="Import" Command="{Binding ImportCommand,
-                    UpdateSourceTrigger=PropertyChanged}" Margin="0,45,0,0" Style="{StaticResource InteractButtons}"/>
-
-                <Button Name="exportBut" Content="Export image" Command="{Binding ExportCommand,
                     UpdateSourceTrigger=PropertyChanged}" Margin="0,5,0,0" Style="{StaticResource InteractButtons}"/>
             </StackPanel>
         </Border>

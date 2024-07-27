@@ -12,10 +12,19 @@
                 <ResourceDictionary Source="Styles/DatagridStyles.xaml"/>
                 <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollViewerStyles.xaml"/>
-                
+                <ResourceDictionary Source="Styles/MenuItemStyles.xaml"/>
+                <ResourceDictionary Source="Styles/IconStyles.xaml"/>
+
                 <ResourceDictionary Source="Resources/Cross.xaml"/>
                 <ResourceDictionary Source="Resources/Tick.xaml"/>
                 <ResourceDictionary Source="Resources/Error.xaml"/>
+                <ResourceDictionary Source="Resources/Open.xaml"/>
+                <ResourceDictionary Source="Resources/Save.xaml"/>
+                <ResourceDictionary Source="Resources/File.xaml"/>
+                <ResourceDictionary Source="Resources/Succes.xaml"/>
+                <ResourceDictionary Source="Resources/Image.xaml"/>
+                <ResourceDictionary Source="Resources/Import.xaml"/>
+                <ResourceDictionary Source="Resources/Export.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

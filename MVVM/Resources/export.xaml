@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <DrawingGroup x:Key="export_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,48.0,48.0"/>
+        </DrawingGroup.ClipGeometry>
+        <GeometryDrawing>
+            <GeometryDrawing.Brush>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="8.469,8.469" EndPoint="42.33,42.33">
+                    <GradientStop Color="#ff2aa4f4" Offset="0.0"/>
+                    <GradientStop Color="#ff007ad9" Offset="1.0"/>
+                </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 39 41 H 9 c -1.1 0 -2 -0.9 -2 -2 V 9 c 0 -1.1 0.9 -2 2 -2 h 30 c 1.1 0 2 0.9 2 2 v 30 C 41 40.1 40.1 41 39 41 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <DrawingGroup Opacity="0.018">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -5.528 L 20.695 21.777 c -0.746 0.746 -0.746 1.954 0 2.7 l 2.828 2.828 c 0.746 0.746 1.954 0.746 2.7 0 L 41 12.528 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.036">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -5.4 L 20.759 21.841 c -0.71 0.71 -0.71 1.861 0 2.571 l 2.828 2.828 c 0.71 0.71 1.861 0.71 2.571 0 L 41 12.4 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.054">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -5.271 L 20.823 21.906 c -0.675 0.675 -0.675 1.768 0 2.443 l 2.828 2.828 c 0.675 0.675 1.768 0.675 2.443 0 L 41 12.271 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.073">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -5.143 l -14.97 14.97 c -0.639 0.639 -0.639 1.675 0 2.314 l 2.828 2.828 c 0.639 0.639 1.675 0.639 2.314 0 L 41 12.143 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.091">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -5.014 L 20.952 22.034 c -0.604 0.604 -0.604 1.582 0 2.186 l 2.828 2.828 c 0.604 0.604 1.582 0.604 2.186 0 L 41 12.014 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.109">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -4.885 L 21.016 22.098 c -0.568 0.568 -0.568 1.489 0 2.057 l 2.828 2.828 c 0.568 0.568 1.489 0.568 2.057 0 L 41 11.885 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.127">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -4.757 L 21.081 22.163 c -0.533 0.533 -0.533 1.396 0 1.928 l 2.828 2.828 c 0.533 0.533 1.396 0.533 1.928 0 L 41 11.757 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.145">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -4.628 L 21.145 22.227 c -0.497 0.497 -0.497 1.303 0 1.8 l 2.828 2.828 c 0.497 0.497 1.303 0.497 1.8 0 L 41 11.628 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.164">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -4.5 L 21.209 22.291 c -0.462 0.462 -0.462 1.21 0 1.671 l 2.828 2.828 c 0.462 0.462 1.21 0.462 1.671 0 L 41 11.5 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.182">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -4.371 L 21.273 22.355 c -0.426 0.426 -0.426 1.117 0 1.543 l 2.828 2.828 c 0.426 0.426 1.117 0.426 1.543 0 L 41 11.371 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <DrawingGroup Opacity="0.2">
+            <GeometryDrawing Brush="#ff000000">
+                <GeometryDrawing.Geometry>
+                    <PathGeometry Figures="M 41 7 h -4.243 l -15.42 15.42 c -0.391 0.391 -0.391 1.024 0 1.414 l 2.828 2.828 c 0.391 0.391 1.024 0.391 1.414 0 L 41 11.243 V 7 z" FillRule="Nonzero"/>
+                </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+        </DrawingGroup>
+        <GeometryDrawing Brush="#ff50e6ff">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 36.452 1.379 l 2.963 2.963 L 21.338 22.42 c -0.391 0.391 -0.391 1.024 0 1.414 l 2.828 2.828 c 0.391 0.391 1.024 0.391 1.414 0 L 43.658 8.585 l 2.963 2.963 C 47.13 12.057 48 11.697 48 10.977 l 0 -9.361 C 48 0.723 47.277 0 46.384 0 l -9.361 0 C 36.303 0 35.943 0.87 36.452 1.379 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource export_xaml}" x:Key="di_export_xaml"/>
+</ResourceDictionary>
