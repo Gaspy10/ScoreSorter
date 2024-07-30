@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <DrawingGroup x:Key="Edit_xaml">
+        <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0.0,0.0,48.0,48.0"/>
+        </DrawingGroup.ClipGeometry>
+        <GeometryDrawing Brush="#ffc94f60">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 42.583 9.067 l -3.651 -3.65 c -0.555 -0.556 -1.459 -0.556 -2.015 0 l -1.718 1.72 l 5.664 5.664 l 1.72 -1.718 C 43.139 10.526 43.139 9.625 42.583 9.067" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#fff0f0f0">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 6.905 35.43 L 5 43 l 7.571 -1.906 l 0.794 -6.567 L 6.905 35.43 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#ffedbe00">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 36.032 17.632 l -23.46 23.461 l -5.665 -5.665 l 23.46 -23.461 L 36.032 17.632 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing>
+            <GeometryDrawing.Brush>
+                <LinearGradientBrush MappingMode="Absolute" StartPoint="35.612,7.494" EndPoint="35.612,17.921">
+                    <GradientStop Color="#ffdedede" Offset="0.0"/>
+                    <GradientStop Color="#ffd6d6d6" Offset="1.0"/>
+                </LinearGradientBrush>
+            </GeometryDrawing.Brush>
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 30.363 11.968 l 4.832 -4.834 l 5.668 5.664 l -4.832 4.834 L 30.363 11.968 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+        <GeometryDrawing Brush="#ff787878">
+            <GeometryDrawing.Geometry>
+                <PathGeometry Figures="M 5.965 39.172 L 5 43 l 3.827 -0.965 L 5.965 39.172 z" FillRule="Nonzero"/>
+            </GeometryDrawing.Geometry>
+        </GeometryDrawing>
+    </DrawingGroup>
+    <DrawingImage Drawing="{StaticResource Edit_xaml}" x:Key="di_Edit_xaml"/>
+</ResourceDictionary>

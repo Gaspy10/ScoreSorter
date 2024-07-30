@@ -25,6 +25,8 @@
                 <ResourceDictionary Source="Resources/Image.xaml"/>
                 <ResourceDictionary Source="Resources/Import.xaml"/>
                 <ResourceDictionary Source="Resources/Export.xaml"/>
+                <ResourceDictionary Source="Resources/Edit.xaml"/>
+                <ResourceDictionary Source="Resources/Clear.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -51,7 +51,8 @@
                 </MenuItem>
             </MenuItem>
 
-            <MenuItem Header="Image" FontSize="16" Style="{StaticResource MenuItemStyle1}" Foreground="White" VerticalAlignment="Center" Padding="10,0,10,0" BorderThickness="2" BorderBrush="#8e546f">
+            <MenuItem Header="Image" FontSize="16" Style="{StaticResource MenuItemStyle1}" Foreground="White" VerticalAlignment="Center" Padding="10,0,10,0" BorderThickness="2" BorderBrush="#8e546f"
+                      Margin="0,0,0,0">
                 <MenuItem.Icon>
                     <Image Source="{StaticResource di_image_xaml}"/>
                 </MenuItem.Icon>
@@ -63,6 +64,19 @@
                 <MenuItem Command="{Binding ExportCommand, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MenuItemStyle1}" Header="Export">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource di_export_xaml}" Style="{StaticResource IconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header="Edit" FontSize="16" Style="{StaticResource MenuItemStyle1}" Foreground="White" VerticalAlignment="Center" Padding="10,0,10,0" BorderThickness="2" BorderBrush="#8e546f"
+                      Margin="0,0,0,0">
+                <MenuItem.Icon>
+                    <Image Source="{StaticResource di_Edit_xaml}"/>
+                </MenuItem.Icon>
+
+                <MenuItem Command="{Binding ClearCommand, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MenuItemStyle1}" Header="Clear">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource di_Clear_xaml}" Style="{StaticResource IconStyle}"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

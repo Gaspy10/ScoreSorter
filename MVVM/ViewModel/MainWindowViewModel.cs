@@ -26,6 +26,12 @@ namespace MVVM.ViewModel
         public RelayCommand DragCommand => new RelayCommand(execute => DragWindow(execute), canExecute => ConditionalFunctions.CanInteract(canExecute));
         public RelayCommand ImportCommand => new RelayCommand(execute => ImportFilePath(), canExecute => true);
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => ConditionalFunctions.CanExport(Items));
+        public RelayCommand ClearCommand => new RelayCommand(execute => Clear(), canExecute => ConditionalFunctions.CanExport(Items));
+
+        private void Clear()
+        {
+            Items.Clear();
+        }
 
         private string SavedPath { get; set; }
 
