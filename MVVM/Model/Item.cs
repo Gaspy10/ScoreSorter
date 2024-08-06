@@ -48,12 +48,6 @@ namespace MVVM.Model
                 }
             }
         }
-        /*public Item(string name, int points, string order)
-        {
-            Name = name;
-            Points = points;
-            Order = order;
-        }*/
 
         public event PropertyChangedEventHandler PropertyChanged;
 

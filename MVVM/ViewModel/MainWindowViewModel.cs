@@ -4,12 +4,12 @@ using MVVM.Python;
 using MVVM.View;
 using MVVM.ViewModel.Reorder_function;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Text.Json;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Windows;
-//using WinForms = System.Windows.Forms;
+using System.IO;
+using System.Text.Json;
+using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace MVVM.ViewModel
 {
@@ -228,27 +228,60 @@ namespace MVVM.ViewModel
 
             int lineHeight = (int)font.GetHeight() + 5;
 
-            //calculate the width
-            //int width = 1000;
             int height = Items.Count * lineHeight;
 
-            int maxLength = -1;
+            int maxNameLength = 0;
+            int maxPointsLength = 0;
+            int maxOrderLength = 0;
+
+            string maxOrder = "";
+            string maxName = "";
+            string maxPoints = "";
 
             for (int i = 0; i < Items.Count; i++)
             {
-                if (Items[i].Name == null)
+                bool isNameNull = Items[i].Name == null;
+                bool isOrderNull = Items[i].Order == null;
+
+                if ( !isNameNull && Items[i].Name.Length > maxNameLength)
                 {
-                    continue;
+                    maxNameLength = Items[i].Name.Length;
+                    maxName = Items[i].Name;
                 }
-                if (Items[i].Name.Length > maxLength)
+                
+                if (!isOrderNull && Items[i].Order.Length > maxOrderLength)
                 {
-                    maxLength = Items[i].Name.Length;
+                    maxOrderLength = Items[i].Order.Length;
+                    maxOrder = Items[i].Order;
+                }
+
+                if (Items[i].Points.ToString().Length > maxPointsLength)
+                {
+                    maxPointsLength = Items[i].Points.ToString().Length;
+                    maxPoints = Items[i].Points.ToString();
                 }
             }
 
-            float nameWidth = maxLength * 13.5f;
-            int width = (int)(nameWidth) + 195;
-            List<float> verticalSeparators = new List<float> { 100, 120 + nameWidth };
+            float orderWidth = 0;
+            float nameWidth = 0;
+            float pointsWidth = 0;
+
+            using (Bitmap tempBitmap = new Bitmap(1, 1))
+            {
+                using (Graphics graphics = Graphics.FromImage(tempBitmap))
+                {
+                    SizeF orderSize = graphics.MeasureString(maxOrder, font);
+                    SizeF nameSize = graphics.MeasureString(maxName, font);
+                    SizeF pointsSize = graphics.MeasureString(maxPoints, font);
+
+                    orderWidth = orderSize.Width;
+                    nameWidth = nameSize.Width;
+                    pointsWidth = pointsSize.Width;
+                }
+            }
+
+            int width = (int)(nameWidth) +(int)pointsWidth + (int)orderWidth + 30; //30 is the sum of the margins.
+            List<float> verticalSeparators = new List<float> { (10 + orderWidth), (20 + nameWidth + orderWidth) };
 
             using (Bitmap bitmap = new Bitmap(width, height))
             {
@@ -258,11 +291,9 @@ namespace MVVM.ViewModel
 
                     for (int i = 0; i < Items.Count; i++)
                     {
-                        graphics.DrawString(Items[i].Order, font, Brushes.Black, 4, i * lineHeight);
-                        //graphics.DrawString("|", font, Brushes.Black, 95, i * lineHeight);
-                        graphics.DrawString(Items[i].Name, font, Brushes.Black, 110, i * lineHeight);
-                        //graphics.DrawString("|", font, Brushes.Black, 115+nameWidth, i * lineHeight);
-                        graphics.DrawString(Items[i].Points.ToString(), font, Brushes.Black, nameWidth+130, i * lineHeight);
+                        graphics.DrawString(Items[i].Order, font, Brushes.Black, 5, i * lineHeight);
+                        graphics.DrawString(Items[i].Name, font, Brushes.Black, (15 + orderWidth), i * lineHeight);
+                        graphics.DrawString(Items[i].Points.ToString(), font, Brushes.Black, (25 + orderWidth + nameWidth), i * lineHeight);
 
                         System.Drawing.Point horizonatalStart = new System.Drawing.Point(0, (i + 1) * lineHeight);
                         System.Drawing.Point horizontalEnd = new System.Drawing.Point(width, (i + 1) * lineHeight);
