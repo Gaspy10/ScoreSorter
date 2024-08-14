@@ -123,6 +123,11 @@
             </StackPanel>
         </Border>
 
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+            <Button Command="{Binding RevertCommand, UpdateSourceTrigger=PropertyChanged}" Content="Revert"/>
+            <Button Command="{Binding ForwardCommand, UpdateSourceTrigger=PropertyChanged}" Content="Forward"/>
+        </StackPanel>
+
         <!-- <Label Content="Sorter" FontSize="25" FontStyle="Oblique" Style="{StaticResource MainLabel}"/> -->
     </Grid>
 

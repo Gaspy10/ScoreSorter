@@ -27,10 +27,42 @@ namespace MVVM.ViewModel
         public RelayCommand ImportCommand => new RelayCommand(execute => ImportFilePath(), canExecute => true);
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => ConditionalFunctions.CanExport(Items));
         public RelayCommand ClearCommand => new RelayCommand(execute => Clear(), canExecute => ConditionalFunctions.CanExport(Items));
+        public RelayCommand RevertCommand => new RelayCommand(execute => Revert(), canExecute => DepthIndex != 0);
 
+        private void Revert()
+        {
+            ObservableCollection<Item> TestItems = new ObservableCollection<Item>();
+            TestItems.Add(new Item { Name = "POIU", Points = 123 });
+            //Console.WriteLine(collectionCollector.ItemsCollection[0, 0]);
+
+            Items = new ObservableCollection<Item>(collectionCollector.ItemsCollection[--DepthIndex]);
+            Console.WriteLine(collectionCollector.ItemsCollection[0][0].Name);
+            OnPropertyChanged(nameof(Items));
+        }
+
+        public RelayCommand ForwardCommand => new RelayCommand(execute => Forward(), canExecute => DepthIndex != collectionCollector.ItemsCollection.Count()-1);
+
+        private void Forward()
+        {
+            var colItems = new ObservableCollection<ObservableCollection<Item>>(collectionCollector.ItemsCollection);
+
+            Items = new ObservableCollection<Item>(colItems[++DepthIndex].Select(item => (Item)item.Clone()));
+            OnPropertyChanged(nameof(Items));
+        }
+
+        CollectionCollector collectionCollector;
+
+        public event EventHandler<OnCollectionChangedEventArgs> OnCollectionChanged;
+        public class OnCollectionChangedEventArgs : EventArgs
+        {
+            public ObservableCollection<Item> CollectedItems { get; set; }
+        }
+        internal int DepthIndex { get; set; }
+       
         private void Clear()
         {
             Items.Clear();
+            OnCollectionChanged?.Invoke(this, new OnCollectionChangedEventArgs { CollectedItems = Items });
         }
 
         private string SavedPath { get; set; }
@@ -93,6 +125,7 @@ namespace MVVM.ViewModel
                 Items.Add(new Item { Name = items[i].Name, Points = items[i].Points });
             }
             Items.Sort();
+            OnCollectionChanged?.Invoke(this, new OnCollectionChangedEventArgs { CollectedItems = Items });
         }
 
         private async Task ImportFilePath()
@@ -168,6 +201,7 @@ namespace MVVM.ViewModel
                 return;
             }
             imageProcess.ProcessState = "Done!";
+            OnCollectionChanged?.Invoke(this, new OnCollectionChangedEventArgs { CollectedItems = Items });
         }
 
         private void OpenNewErrorWindow(string error)
@@ -323,9 +357,11 @@ namespace MVVM.ViewModel
         }
         public MainWindowViewModel()
         {
+            collectionCollector = new CollectionCollector(this);
             Items = new ObservableCollection<Item>();
 
             Items.Add(new Item { Name = "John", Points = 10 });
+            OnCollectionChanged?.Invoke(this, new OnCollectionChangedEventArgs { CollectedItems = Items });
         }
 
         private bool canAdd = false;
@@ -404,11 +440,13 @@ namespace MVVM.ViewModel
             NewName = "";
             NewSurname = "";
             Items.Sort();
+            OnCollectionChanged?.Invoke(this, new OnCollectionChangedEventArgs { CollectedItems = Items });
         }
 
         private void RemoveItem()
         {
             Items.Remove(selectedItem);
+            OnCollectionChanged?.Invoke(this, new OnCollectionChangedEventArgs { CollectedItems = Items });
         }
 
         private void ShuffleCollection()
@@ -419,6 +457,7 @@ namespace MVVM.ViewModel
         private void SortCollection()
         {
             Items.Sort();
+            OnCollectionChanged?.Invoke(this, new OnCollectionChangedEventArgs { CollectedItems = Items });
         }
 
         private void EditItem()
@@ -441,6 +480,7 @@ namespace MVVM.ViewModel
             selectedItem.Points = int.Parse(input.PointsInput);
 
             Items.Sort();
+            OnCollectionChanged?.Invoke(this, new OnCollectionChangedEventArgs { CollectedItems = Items });
         }
 
         private bool CanEdit(object parameter)
