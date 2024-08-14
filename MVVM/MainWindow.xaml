@@ -17,6 +17,16 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation From="0" To="1" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity"/> 
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>

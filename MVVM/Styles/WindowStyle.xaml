@@ -5,6 +5,7 @@
         <Setter Property="Title" Value="Sorter"/>
         <Setter Property="Height" Value="550"/>
         <Setter Property="Width" Value="900"/>
+        <Setter Property="AllowsTransparency" Value="True"/>
         <!--<Setter Property="MinHeight" Value="450"/>-->
         <!--<Setter Property="MinWidth" Value="800"/>-->
         <Setter Property="Background" Value="#333333"/>

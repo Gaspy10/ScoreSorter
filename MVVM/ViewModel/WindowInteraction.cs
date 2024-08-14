@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Peers;
+using System.Windows.Media.Animation;
 
 namespace MVVM.ViewModel
 {
@@ -16,8 +18,32 @@ namespace MVVM.ViewModel
         internal void CloseWindow(object parameter)
         {
             Window window = (Window)parameter;
-            window.Close();
+            Storyboard storyboard = new Storyboard();
+
+            DoubleAnimation closeAnimation = new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                Duration = new Duration(TimeSpan.FromSeconds(0.2))
+            };
+
+            Storyboard.SetTarget(closeAnimation, window);
+            Storyboard.SetTargetProperty(closeAnimation, new PropertyPath(Window.OpacityProperty));
+
+            // Add the animation to the storyboard
+            storyboard.Children.Add(closeAnimation);
+
+            // Attach the Completed event to the storyboard (not the animation)
+            storyboard.Completed += (s, e) =>
+            {
+                window.Close();
+            };
+
+            // Begin the storyboard
+            storyboard.Begin();
+
         }
+
         internal void ResizeWindow(object parameter)
         {
             Window window = (Window)parameter;
