@@ -124,8 +124,17 @@
         </Border>
 
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
-            <Button Command="{Binding RevertCommand, UpdateSourceTrigger=PropertyChanged}" Content="Revert"/>
-            <Button Command="{Binding ForwardCommand, UpdateSourceTrigger=PropertyChanged}" Content="Forward"/>
+            <Button Command="{Binding RevertCommand, UpdateSourceTrigger=PropertyChanged}" Margin="3" BorderThickness="2px" BorderBrush="Gray">
+                <Button.Content>
+                    <Image Source="{StaticResource di_undo_xaml}" Style="{StaticResource IconStyle}"/>
+                </Button.Content>
+            </Button>
+
+            <Button Command="{Binding ForwardCommand, UpdateSourceTrigger=PropertyChanged}" Margin="3" BorderThickness="2px" BorderBrush="Gray">
+                <Button.Content>
+                    <Image Source="{StaticResource di_redo_xaml}" Style="{StaticResource IconStyle}"/>
+                </Button.Content>
+            </Button>
         </StackPanel>
 
         <!-- <Label Content="Sorter" FontSize="25" FontStyle="Oblique" Style="{StaticResource MainLabel}"/> -->

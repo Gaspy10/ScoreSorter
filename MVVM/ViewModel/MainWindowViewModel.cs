@@ -27,27 +27,30 @@ namespace MVVM.ViewModel
         public RelayCommand ImportCommand => new RelayCommand(execute => ImportFilePath(), canExecute => true);
         public RelayCommand SaveCommand => new RelayCommand(execute => Save(), canExecute => ConditionalFunctions.CanExport(Items));
         public RelayCommand ClearCommand => new RelayCommand(execute => Clear(), canExecute => ConditionalFunctions.CanExport(Items));
-        public RelayCommand RevertCommand => new RelayCommand(execute => Revert(), canExecute => DepthIndex != 0);
+        public RelayCommand RevertCommand => new RelayCommand(execute => Revert(), canExecute => collectionCollector.undoStack.Count > 1);
 
         private void Revert()
         {
-            ObservableCollection<Item> TestItems = new ObservableCollection<Item>();
-            TestItems.Add(new Item { Name = "POIU", Points = 123 });
-            //Console.WriteLine(collectionCollector.ItemsCollection[0, 0]);
-
-            Items = new ObservableCollection<Item>(collectionCollector.ItemsCollection[--DepthIndex]);
-            Console.WriteLine(collectionCollector.ItemsCollection[0][0].Name);
-            OnPropertyChanged(nameof(Items));
+            collectionCollector.redoStack.Push(collectionCollector.undoStack.Pop());
+            object poppedCollection = collectionCollector.undoStack.Peek();
+            if(poppedCollection is ObservableCollection<Item> convertedObject)
+            {
+                Items = new ObservableCollection<Item>(convertedObject);
+                OnPropertyChanged(nameof(Items));
+            }
         }
 
-        public RelayCommand ForwardCommand => new RelayCommand(execute => Forward(), canExecute => DepthIndex != collectionCollector.ItemsCollection.Count()-1);
+        public RelayCommand ForwardCommand => new RelayCommand(execute => Forward(), canExecute => collectionCollector.redoStack.Count > 0);
 
         private void Forward()
         {
-            var colItems = new ObservableCollection<ObservableCollection<Item>>(collectionCollector.ItemsCollection);
-
-            Items = new ObservableCollection<Item>(colItems[++DepthIndex].Select(item => (Item)item.Clone()));
-            OnPropertyChanged(nameof(Items));
+            object poppedCollection = collectionCollector.redoStack.Peek();
+            collectionCollector.undoStack.Push(collectionCollector.redoStack.Pop());
+            if (poppedCollection is ObservableCollection<Item> convertedObject)
+            {
+                Items = new ObservableCollection<Item>(convertedObject);
+                OnPropertyChanged(nameof(Items));
+            }
         }
 
         CollectionCollector collectionCollector;
@@ -57,8 +60,7 @@ namespace MVVM.ViewModel
         {
             public ObservableCollection<Item> CollectedItems { get; set; }
         }
-        internal int DepthIndex { get; set; }
-       
+
         private void Clear()
         {
             Items.Clear();
